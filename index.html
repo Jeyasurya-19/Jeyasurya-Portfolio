@@ -245,6 +245,7 @@
   }
   .timeline-item .date{ font-family: var(--font-mono); font-size:.78rem; color: var(--accent); }
   .timeline-item h4{ margin: 4px 0 4px; font-size:1.05rem; }
+
   /* ---------------- PROJECTS ---------------- */
   .project-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 26px; }
   .project-card{
@@ -318,7 +319,6 @@
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
-      <a href="#certificates">Certificates</a>
       <a href="#projects">projects</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -339,7 +339,7 @@
       one commit at a time.</p>
     <div class="hero-actions">
       <a href="#projects" class="btn btn-primary">View Projects</a>
-      <a href="https://drive.google.com/your-resume-link" target="_blank" class="btn btn-ghost">Download Resume</a>
+      <a href="https://drive.google.com/file/d/10VPP2K0J9NUzPGITzhEt6OyJLRj7XICy/view?usp=drive_link" target="_blank" class="btn btn-ghost">Download Resume</a>
     </div>
     <div class="hero-socials">
       <a href="https://github.com/Jeyasurya-19" target="_blank" aria-label="GitHub">GH</a>
@@ -351,7 +351,7 @@
     <div class="file-dot"><span></span><span></span><span></span></div>
     <pre><span class="key">const</span> developer = {
   <span class="key">name</span>: <span class="str">"Jeyasurya M"</span>,
-  <span class="key">role</span>: <span class="str">"Python Fullsatck Developer"</span>,
+  <span class="key">role</span>: <span class="str">"Junior SoftwareDeveloper"</span>,
   <span class="key">status</span>: <span class="str">"Open to work"</span>,
   <span class="key">location</span>: <span class="str">"Trichy, India"</span>,
 };</pre>
@@ -359,6 +359,7 @@
 </section>
 
 <!-- ================= ABOUT ================= -->
+
 <section id="about">
   <div class="wrap">
     <div class="section-head reveal">
@@ -367,7 +368,7 @@
     </div>
     <div class="about-grid reveal">
       <div class="avatar">
-        <img src="Jeyasurya.jpeg" >
+        <img src="JS.jpeg" alt="Jeyasurya M">
         
       </div>
       <div>
@@ -380,13 +381,14 @@
           keep learning while contributing real value to a team.</p>
         <p>Outside of code, I enjoy music, reading, and exploring new tools
           and frameworks that make development a little more fun.</p>
-        <a href="https://drive.google.com/your-resume-link" target="_blank" class="btn btn-primary" style="margin-top:8px;">View Resume</a>
+        <a href="https://drive.google.com/file/d/10VPP2K0J9NUzPGITzhEt6OyJLRj7XICy/view?usp=drive_link" target="_blank" class="btn btn-primary" style="margin-top:8px;">View Resume</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= SKILLS ================= -->
+
 <section id="skills" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
   <div class="wrap">
     <div class="section-head reveal">
@@ -400,6 +402,7 @@
 </section>
 
 <!-- ================= EXPERIENCE ================= -->
+
 <section id="experience">
   <div class="wrap">
     <div class="section-head reveal">
@@ -417,11 +420,12 @@
   </div>
 </section>
 
+
 <!-- ================= PROJECTS ================= -->
 <section id="projects">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">projects/</div>
+      <div class="eyebrow">projects</div>
       <h2>My projects</h2>
       <p>Showcasing my journey of learning and building. Dive into a few of my
         favorite web development projects below.</p>
@@ -432,10 +436,11 @@
 </section>
 
 <!-- ================= CONTACT ================= -->
+
 <section id="contact" style="background:var(--surface);border-top:1px solid var(--line);">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">contact.sh</div>
+      <div class="eyebrow">contact</div>
       <h2>Let's build something together</h2>
       <p>Have an opportunity, a project, or just want to say hi? My inbox is open.</p>
     </div>
@@ -472,7 +477,7 @@
 </section>
 
 <footer>
-  © <span id="year"></span> Jeyasurya. Built with HTML, CSS &amp; JavaScript.
+  © <span id="year"></span> Jeyasurya Madheswaran. Let's build something together.
 </footer>
 
 <script>
@@ -491,8 +496,10 @@ const SKILLS = [
 
 const TIMELINE = [
   { date: "2023 — 2026", title: "B.E / Mechatronics", desc: "K.S Rangasamy College of Technology." },
-];
 
+  {date:"June 2026 - July 2026", title: "Python Full Stack Course", desc: "Completed a 2 months course on Full Stack Web Development along with 5 AI Tools. Practiced building and connecting frontend interfaces to server-side logic and databases."}
+];
+[{Certificates:"Python Full Stack Development"}];
 
 const PROJECTS = [
   {
@@ -578,7 +585,7 @@ PROJECTS.forEach(p => {
    ================================================================ */
 
 // Typing effect for the hero role text
-const roles = ["Fresher Web Developer", "React & Node.js Enthusiast", "Problem Solver", "Lifelong Learner"];
+const roles = ["Fresher Web Developer", "React.js Enthusiast", "Problem Solver", "Lifelong Learner"];
 const roleEl = document.getElementById('role-typed');
 let roleIndex = 0, charIndex = 0, deleting = false;
 function typeLoop(){
