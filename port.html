@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Developer Portfolio</title>
+<meta name="description" content="Portfolio of Your Name, a fresher web developer.">
+
+<!-- ============================================================
+     FONTS — swap these if you want a different personality.
+     Space Grotesk = headings, Inter = body, JetBrains Mono = labels
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     DESIGN TOKENS — change these to re-theme the whole site
+     ============================================================ */
+  :root{
+    --bg:            #F6F7FA;
+    --surface:       #FFFFFF;
+    --ink:           #14181F;
+    --muted:         #6B7280;
+    --line:          #E4E7EC;
+    --accent:        #2F6FED;
+    --accent-soft:   #E8F0FE;
+    --accent-ink:    #17398C;
+    --radius:        14px;
+    --maxw:          1120px;
+    --font-display:  'Space Grotesk', sans-serif;
+    --font-body:     'Inter', sans-serif;
+    --font-mono:     'JetBrains Mono', monospace;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family: var(--font-display);
+    margin: 0 0 .5em;
+    line-height: 1.15;
+  }
+  p{ margin: 0 0 1em; color: var(--muted); }
+  a{ color: var(--accent); text-decoration: none; }
+  img{ max-width: 100%; display:block; }
+  section{ padding: 96px 24px; }
+  .wrap{ max-width: var(--maxw); margin: 0 auto; }
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display:flex; align-items:center; gap:8px;
+    margin-bottom: 14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px; border-radius:50%;
+    background: var(--accent);
+    display:inline-block;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-weight:600;
+    font-size:.95rem;
+    cursor:pointer;
+    border: 1px solid transparent;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-primary{ background: var(--ink); color:#fff; }
+  .btn-primary:hover{ background:#000; box-shadow: 0 8px 20px rgba(20,24,31,.25); }
+  .btn-ghost{ background: var(--surface); color: var(--ink); border-color: var(--line); }
+  .btn-ghost:hover{ border-color: var(--accent); color: var(--accent); }
+
+  section h2{ font-size: clamp(1.7rem, 3vw, 2.3rem); }
+  .section-head{ max-width: 620px; margin-bottom: 48px; }
+
+  /* ---------------- NAV — styled like editor tabs ---------------- */
+  header.tabbar{
+    position: sticky; top:0; z-index: 100;
+    background: rgba(246,247,250,.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .tabbar-inner{
+    max-width: var(--maxw); margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 14px 24px;
+  }
+  .brand{
+    font-family: var(--font-mono);
+    font-weight:600; font-size: .95rem;
+    display:flex; align-items:center; gap:8px;
+    color: var(--ink);
+  }
+  .brand .dot{ width:9px;height:9px;border-radius:50%;background:var(--accent); }
+  nav.tabs{ display:flex; gap:6px; }
+  nav.tabs a{
+    font-family: var(--font-mono);
+    font-size:.82rem;
+    color: var(--muted);
+    padding: 8px 14px;
+    border-radius: 8px 8px 0 0;
+    border: 1px solid transparent;
+    border-bottom: none;
+    position: relative;
+    top: 1px;
+  }
+  nav.tabs a::before{ content:"◇ "; opacity:.5; }
+  nav.tabs a.active{
+    color: var(--ink);
+    background: var(--surface);
+    border-color: var(--line);
+  }
+  .nav-cta{ display:flex; align-items:center; gap:10px; }
+  .menu-toggle{
+    display:none; background:none; border:none; cursor:pointer;
+    flex-direction:column; gap:4px; padding:6px;
+  }
+  .menu-toggle span{ width:22px; height:2px; background:var(--ink); display:block; }
+
+  @media (max-width: 860px){
+    nav.tabs{
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; background:var(--surface);
+      border-bottom:1px solid var(--line);
+      padding: 8px; gap:0;
+      display:none;
+    }
+    nav.tabs.open{ display:flex; }
+    nav.tabs a{ border-radius:8px; padding:12px; top:0; }
+    .menu-toggle{ display:flex; }
+  }
+
+  /* ---------------- HERO ---------------- */
+  .hero{
+    padding-top: 90px;
+    display:grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items:center;
+  }
+  .hero-kicker{
+    font-family: var(--font-mono); font-size:.85rem; color: var(--muted);
+  }
+  .hero h1{ font-size: clamp(2.2rem, 5vw, 3.6rem);}
+  .hero h1 .accent{ color: var(--accent);}
+  .hero h1 .accent{font-family:sans-serif;}
+  #role-typed{ color: var(--accent); font-family: (Georgia, 'Times New Roman', Times, serif); }
+  #role-typed::after{
+    content:"▍"; margin-left:2px; animation: blink 1s step-start infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .hero p.lede{ font-size: 1.05rem; max-width: 480px; }
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-top: 8px; }
+  .hero-socials{ display:flex; gap:16px; margin-top: 28px; }
+  .hero-socials a{
+    width:38px; height:38px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background: var(--surface); border:1px solid var(--line);
+    color: var(--ink); font-size:.85rem; font-family: var(--font-mono);
+  }
+  .hero-socials a:hover{ border-color: var(--accent); color: var(--accent); }
+
+  .hero-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: 0 20px 50px -25px rgba(20,24,31,.25);
+    font-family: var(--font-mono);
+    font-size: .85rem;
+  }
+  .hero-card .file-dot{ display:flex; gap:6px; margin-bottom:16px; }
+  .hero-card .file-dot span{ width:10px;height:10px;border-radius:50%; }
+  .hero-card .file-dot span:nth-child(1){ background:#ED6A5E; }
+  .hero-card .file-dot span:nth-child(2){ background:#F4BF4F; }
+  .hero-card .file-dot span:nth-child(3){ background:#61C554; }
+  .hero-card pre{ margin:0; white-space: pre-wrap; color:#3A4048; }
+  .hero-card .key{ color: var(--accent-ink); }
+  .hero-card .str{ color:#0E8A5F; }
+
+  @media (max-width: 860px){
+    .hero{ grid-template-columns: 1fr; padding-top: 60px; }
+  }
+
+  /* ---------------- ABOUT ---------------- */
+  .about-grid{
+    display:grid; grid-template-columns: 280px 1fr; gap: 48px; align-items:start;
+  }
+  .avatar{
+    width:100%; aspect-ratio:1; border-radius: var(--radius);
+    background: var(--accent-soft);
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-mono); color: var(--accent); font-size:.85rem;
+    overflow:hidden;
+  }
+  .avatar img{ width:100%; height:100%; object-fit:contain; }
+  @media (max-width: 400px){ .about-grid{ grid-template-columns: 1fr; } .avatar{ max-width:220px; } }
+
+  /* ---------------- SKILLS ---------------- */
+  .skills-groups{ display:grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap: 24px; }
+  .skill-card{
+    background: var(--surface); border:1px solid var(--line); border-radius: var(--radius);
+    padding: 22px;
+  }
+  .skill-card h3{
+    font-family: var(--font-mono); font-size:.85rem; text-transform:uppercase;
+    letter-spacing:.06em; color: var(--muted); margin-bottom: 14px;
+  }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    font-size:.82rem; padding: 6px 12px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent-ink);
+    font-weight:500;
+  }
+
+  /* ---------------- STATS / EXPERIENCE ---------------- */
+  .stats-row{
+    display:grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 24px;
+  }
+  .stat-card{
+    background: var(--ink); color:#fff; border-radius: var(--radius);
+    padding: 28px 22px; text-align:left;
+  }
+  .stat-card .num{ font-family: var(--font-display); font-size: 2.2rem; color:#fff; }
+  .stat-card .num span{ color: #7FB0FF; }
+  .stat-card .label{ font-size:.85rem; color:#B7BEC9; margin-top:4px; }
+
+  .timeline{ margin-top:48px; border-left:2px solid var(--line); padding-left: 28px; display:flex; flex-direction:column; gap:32px; }
+  .timeline-item{ position:relative; }
+  .timeline-item::before{
+    content:""; position:absolute; left:-33px; top:4px;
+    width:10px; height:10px; border-radius:50%; background: var(--accent);
+  }
+  .timeline-item .date{ font-family: var(--font-mono); font-size:.78rem; color: var(--accent); }
+  .timeline-item h4{ margin: 4px 0 4px; font-size:1.05rem; }
+  /* ---------------- PROJECTS ---------------- */
+  .project-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 26px; }
+  .project-card{
+    background: var(--surface); border:1px solid var(--line); border-radius: var(--radius);
+    overflow:hidden; display:flex; flex-direction:column;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .project-card:hover{ transform: translateY(-4px); box-shadow: 0 20px 40px -28px rgba(20,24,31,.35); }
+  .project-thumb{
+    aspect-ratio: 16/10; background: var(--accent-soft);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-mono); font-size:.78rem; color:var(--accent-ink);
+    border-bottom: 1px solid var(--line);
+  }
+  .project-body{ padding: 20px; display:flex; flex-direction:column; gap:10px; flex:1; }
+  .project-body h3{ font-size:1.05rem; margin:0; }
+  .project-body p{ font-size:.88rem; margin:0; }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:8px; }
+  .tag{ font-family: var(--font-mono); font-size:.72rem; background:var(--bg); border:1px solid var(--line); padding:3px 8px; border-radius:6px; color:var(--muted); }
+  .project-links{ display:flex; gap:14px; padding: 0 20px 18px; }
+  .project-links a{ font-size:.85rem; font-weight:600; }
+
+  /* ---------------- CONTACT ---------------- */
+  .contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:48px; }
+  .contact-info-item{ display:flex; gap:14px; margin-bottom:22px; }
+  .contact-info-icon{
+    width:40px; height:40px; border-radius:10px; background:var(--accent-soft);
+    display:flex; align-items:center; justify-content:center; color:var(--accent-ink);
+    font-family: var(--font-mono); font-size:.8rem; flex-shrink:0;
+  }
+  .contact-info-item h4{ margin:0 0 2px; font-size:.95rem; }
+  .contact-info-item p{ margin:0; font-size:.9rem; }
+
+  form.contact-form{ display:flex; flex-direction:column; gap:14px; }
+  form.contact-form input, form.contact-form textarea{
+    padding: 12px 14px; border-radius:10px; border:1px solid var(--line);
+    background: var(--surface); font-family: var(--font-body); font-size:.92rem;
+    color: var(--ink);
+  }
+  form.contact-form textarea{ min-height:120px; resize:vertical; }
+  form.contact-form input:focus, form.contact-form textarea:focus{
+    outline: 2px solid var(--accent); outline-offset:1px;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding: 28px 24px; text-align:center;
+    font-size:.85rem; color: var(--muted);
+    font-family: var(--font-mono);
+  }
+
+  /* ---------------- scroll-reveal ---------------- */
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset:2px; }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="tabbar">
+  <div class="tabbar-inner">
+    <div class="brand"><span class="dot"></span> Jeyasurya M</div>
+    <nav class="tabs" id="tabs">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary" style="padding:8px 16px;font-size:.85rem;">Hire me</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="home" class="hero wrap">
+  <div>
+    <div class="hero-kicker">// Fresher Web Developer · Open to opportunities</div>
+    <h1>Hi, I'm <span class="accent">Jeyasurya M</span><br><span id="role-typed"></span></h1>
+    <p class="lede">I build clean, responsive web applications and I'm looking for my first
+      full-time role as a developer. I like turning ideas into working software —
+      one commit at a time.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="https://drive.google.com/your-resume-link" target="_blank" class="btn btn-ghost">Download Resume</a>
+    </div>
+    <div class="hero-socials">
+      <a href="https://github.com/Jeyasurya-19" target="_blank" aria-label="GitHub">GH</a>
+      <a href="https://www.linkedin.com/in/jeyasurya-m-19027a1bb?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" aria-label="LinkedIn">in</a>
+      <a href="mailto:jeya41140@gmail.com" aria-label="Email">@</a>
+    </div>
+  </div>
+  <div class="hero-card reveal">
+    <div class="file-dot"><span></span><span></span><span></span></div>
+    <pre><span class="key">const</span> developer = {
+  <span class="key">name</span>: <span class="str">"Jeyasurya M"</span>,
+  <span class="key">role</span>: <span class="str">"Python Fullsatck Developer"</span>,
+  <span class="key">status</span>: <span class="str">"Open to work"</span>,
+  <span class="key">location</span>: <span class="str">"Trichy, India"</span>,
+};</pre>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">about</div>
+      <h2>A little about me</h2>
+    </div>
+    <div class="about-grid reveal">
+      <div class="avatar">
+        <img src="Jeyasurya.jpeg" >
+        
+      </div>
+      <div>
+        <p>Hi there! I'm a web developer with a love for coding, a knack for
+          problem-solving, and a genuine excitement for turning ideas into working
+          products. I'm comfortable with HTML, CSS, JavaScript, React,
+          and I've built and shipped a handful of personal projects to learn by doing.</p>
+        <p>I'm self-taught (with help from a few great courses), curious by
+          nature, and currently looking for a fresher/entry-level role where I can
+          keep learning while contributing real value to a team.</p>
+        <p>Outside of code, I enjoy music, reading, and exploring new tools
+          and frameworks that make development a little more fun.</p>
+        <a href="https://drive.google.com/your-resume-link" target="_blank" class="btn btn-primary" style="margin-top:8px;">View Resume</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">skills</div>
+      <h2>The toolkit I use to build things</h2>
+    </div>
+    <!-- Skills are rendered from the SKILLS array in the script below.
+         Edit the SKILLS config to add/remove/rename groups & items. -->
+    <div class="skills-groups reveal" id="skillsContainer"></div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Education</div>
+      <h2> Education</h2>
+    </div>
+    <div class="stats-row reveal">
+      <div class="stat-card"><div class="num" data-count="5">0<span>+</span></div><div class="label">Projects built</div></div>
+      <div class="stat-card"><div class="num" data-count="1">0<span></span></div><div class="label">Certifications</div></div>
+      <div class="stat-card"><div class="num" data-count="100">0<span>%</span></div><div class="label">Eager to learn</div></div>
+    </div>
+
+    <!-- Timeline is rendered from the TIMELINE array below. -->
+    <div class="timeline reveal" id="timelineContainer"></div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">projects/</div>
+      <h2>My projects</h2>
+      <p>Showcasing my journey of learning and building. Dive into a few of my
+        favorite web development projects below.</p>
+    </div>
+    <!-- Projects render from the PROJECTS array below — add as many as you like. -->
+    <div class="project-grid reveal" id="projectsContainer"></div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" style="background:var(--surface);border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">contact.sh</div>
+      <h2>Let's build something together</h2>
+      <p>Have an opportunity, a project, or just want to say hi? My inbox is open.</p>
+    </div>
+    <div class="contact-grid reveal">
+      <div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">&#128231;</div>
+          <div><h4>Email</h4><p>jeya41140@gmail.com</p></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">&#128222;</div>
+          <div><h4>Phone</h4><p>+91 6383133626</p></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">&#x1F4CD;</div>
+          <div><h4>Location</h4><p>Trichy, India</p></div>
+        </div>
+        <div class="hero-socials" style="margin-top:24px;">
+          <a href="https://github.com/jeyasurya-19" target="_blank" aria-label="GitHub">GH</a>
+          <a href="https://linkedin.com/in/your-username" target="_blank" aria-label="LinkedIn">in</a>
+          <a href="mailto:jeya41140@gmail.com" aria-label="Email">@</a>
+        </div>
+      </div>
+      <!-- This form is a static UI only (no backend). Wire it up to Formspree,
+           EmailJS, or your own API endpoint if you want it to send messages. -->
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Connect this form to Formspree/EmailJS/your backend to receive messages.');">
+        <input type="text" placeholder="Your name" required>
+        <input type="email" placeholder="Your email" required>
+        <textarea placeholder="Your message" required></textarea>
+        <button type="submit" class="btn btn-primary">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Jeyasurya. Built with HTML, CSS &amp; JavaScript.
+</footer>
+
+<script>
+/* ================================================================
+   EDIT ZONE — change the arrays below to update Skills, Timeline,
+   Testimonials and Projects without touching any markup above.
+   ================================================================ */
+
+const SKILLS = [
+  { group: "Languages", items: ["Python","MySQL"] },
+  { group: "Frontend", items: ["HTML", "CSS", "React.js", "Next.js", "JavaScript", "Bootstrap"] },
+  { group: "Backend", items: ["MySQL","FAST API", "REST APIs"] },
+  { group: "Tools & Platforms", items: ["Git & GitHub","Vercel", "Render", "VS Code"] },
+  {group:"AI-Tools", items:["ChatGPT","Copilot","FramerAI","WriteSonic","Midjourney"]}
+];
+
+const TIMELINE = [
+  { date: "2023 — 2026", title: "B.E / Mechatronics", desc: "K.S Rangasamy College of Technology." },
+];
+
+
+const PROJECTS = [
+  {
+    title: "TODO-List",
+    desc: "One-line description of what this project does and who it's for.",
+    tags: ["Python","MySQL","HTML","JavaScript","CSS"],
+    live: "https://your-live-link.vercel.app",
+    code: "https://github.com/your-username/project-one",
+  },
+  {
+    title: "Car Rental Site",
+    desc: "One-line description of what this project does and who it's for.",
+    tags: ["React.js","JSON"],
+    live: "https://your-live-link.vercel.app",
+    code: "https://github.com/your-username/project-two",
+  },
+  {
+    title: "Project Three",
+    desc: "One-line description of what this project does and who it's for.",
+    tags: ["Python", "MySQL"],
+    live: "https://your-live-link.vercel.app",
+    code: "https://github.com/your-username/project-three",
+  },
+  {
+    title: "Project Four",
+    desc: "One-line description of what this project does and who it's for.",
+    tags: ["Python"],
+    live: "",
+    code: "https://github.com/your-username/project-four",
+  },
+];
+
+/* ================================================================
+   RENDER FUNCTIONS — you shouldn't need to edit below this line
+   ================================================================ */
+
+// Skills
+const skillsContainer = document.getElementById('skillsContainer');
+SKILLS.forEach(group => {
+  const card = document.createElement('div');
+  card.className = 'skill-card';
+  card.innerHTML = `
+    <h3>${group.group}</h3>
+    <div class="chip-row">
+      ${group.items.map(i => `<span class="chip">${i}</span>`).join('')}
+    </div>`;
+  skillsContainer.appendChild(card);
+});
+
+// Timeline
+const timelineContainer = document.getElementById('timelineContainer');
+TIMELINE.forEach(item => {
+  const el = document.createElement('div');
+  el.className = 'timeline-item';
+  el.innerHTML = `
+    <div class="date">${item.date}</div>
+    <h4>${item.title}</h4>
+    <p>${item.desc}</p>`;
+  timelineContainer.appendChild(el);
+});
+
+// Projects
+const projectsContainer = document.getElementById('projectsContainer');
+PROJECTS.forEach(p => {
+  const el = document.createElement('div');
+  el.className = 'project-card';
+  el.innerHTML = `
+    <div class="project-thumb">${p.title}</div>
+    <div class="project-body">
+      <h3>${p.title}</h3>
+      <p>${p.desc}</p>
+      <div class="tag-row">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+    </div>
+    <div class="project-links">
+      ${p.live ? `<a href="${p.live}" target="_blank">Live ↗</a>` : ''}
+      ${p.code ? `<a href="${p.code}" target="_blank">Code ↗</a>` : ''}
+    </div>`;
+  projectsContainer.appendChild(el);
+});
+
+/* ================================================================
+   INTERACTIONS
+   ================================================================ */
+
+// Typing effect for the hero role text
+const roles = ["Fresher Web Developer", "React & Node.js Enthusiast", "Problem Solver", "Lifelong Learner"];
+const roleEl = document.getElementById('role-typed');
+let roleIndex = 0, charIndex = 0, deleting = false;
+function typeLoop(){
+  const current = roles[roleIndex];
+  if (!deleting){
+    charIndex++;
+    if (charIndex > current.length){ deleting = true; setTimeout(typeLoop, 1200); return; }
+  } else {
+    charIndex--;
+    if (charIndex < 0){ deleting = false; roleIndex = (roleIndex + 1) % roles.length; charIndex = 0; }
+  }
+  roleEl.textContent = current.slice(0, charIndex);
+  setTimeout(typeLoop, deleting ? 40 : 70);
+}
+typeLoop();
+
+// Mobile menu toggle
+const tabs = document.getElementById('tabs');
+document.getElementById('menuToggle').addEventListener('click', () => tabs.classList.toggle('open'));
+tabs.querySelectorAll('a').forEach(a => a.addEventListener('click', () => tabs.classList.remove('open')));
+
+// Active tab highlight on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav.tabs a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+  });
+});
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
+
+// Animated stat counters
+const counters = document.querySelectorAll('.stat-card .num');
+const counterIO = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.getAttribute('data-count'), 10);
+    const suffixEl = el.querySelector('span');
+    const suffix = suffixEl ? suffixEl.outerHTML : '';
+    let count = 0;
+    const step = Math.max(1, Math.round(target / 40));
+    const tick = () => {
+      count = Math.min(target, count + step);
+      el.innerHTML = count + suffix;
+      if (count < target) requestAnimationFrame(tick);
+    };
+    tick();
+    counterIO.unobserve(el);
+  });
+}, { threshold: 0.4 });
+counters.forEach(el => counterIO.observe(el));
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
