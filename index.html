@@ -914,13 +914,12 @@
             <a href="mailto:jeya41140@gmail.com" aria-label="Email">@</a>
           </div>
         </div>
-        <!-- This form is a static UI only (no backend). Wire it up to Formspree,
-           EmailJS, or your own API endpoint if you want it to send messages. -->
-        <form class="contact-form"
-          onsubmit="event.preventDefault(); alert('Connect this form to Formspree/EmailJS/your backend to receive messages.');">
-          <input type="text" placeholder="Your name" required>
-          <input type="email" placeholder="Your email" required>
-          <textarea placeholder="Your message" required></textarea>
+        <!-- Contact form connected to EmailJS -->
+        <form id="contact-form" class="contact-form">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+          <input type="text" name="title" placeholder="Subject" required>
+          <textarea name="message" placeholder="Your message" required></textarea>
           <button type="submit" class="btn btn-primary">Send message</button>
         </form>
       </div>
@@ -1102,6 +1101,50 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
+  <!-- ============================================================
+       EMAILJS CONTACT FORM
+       Replace YOUR_PUBLIC_KEY, YOUR_SERVICE_ID, and YOUR_TEMPLATE_ID
+       with the values from your EmailJS dashboard.
+       ============================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script>
+    emailjs.init({
+      publicKey: "nlQ1n13X5brXLV0WP"
+    });
+
+    document
+      .getElementById("contact-form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const form = this;
+        const button = form.querySelector("button");
+
+        button.disabled = true;
+        button.innerText = "Sending...";
+
+        emailjs.sendForm(
+          "service_812445j",
+          "template_c3bxi94",
+          form
+        )
+          .then(function () {
+            alert("Message sent successfully! Thank you.");
+            form.reset();
+          })
+          .catch(function (error) {
+            console.error("EmailJS Error:", error);
+            alert("Message could not be sent. Please try again.");
+          })
+          .finally(function () {
+            button.disabled = false;
+            button.innerText = "Send message";
+          });
+      });
+  </script>
+
 </body>
 
 </html>
