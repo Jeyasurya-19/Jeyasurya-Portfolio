@@ -850,7 +850,240 @@ body.dark .theme-toggle {
 
     font-size: 18px;
   }
+    /* =========================================================
+   DARK MODE VISIBILITY FIX
+   ========================================================= */
 
+
+/* ---------------- NAVIGATION ---------------- */
+
+body.dark header.tabbar {
+    background: rgba(11, 17, 32, 0.78);
+    border-bottom-color: var(--line);
+}
+
+body.dark .brand {
+    color: var(--ink);
+}
+
+body.dark nav.tabs a {
+    color: var(--muted);
+}
+
+body.dark nav.tabs a.active {
+    color: var(--ink);
+    background: var(--surface);
+    border-color: var(--line);
+}
+
+body.dark .menu-toggle span {
+    background: var(--ink);
+}
+
+
+/* ---------------- PRIMARY BUTTONS ---------------- */
+/* Hire Me
+   View Projects
+   Send Message
+   View Resume
+*/
+
+body.dark .btn-primary {
+    background: var(--accent);
+    color: #07111f;
+    border-color: var(--accent);
+}
+
+body.dark .btn-primary:hover {
+    background: #93c5fd;
+    color: #07111f;
+    box-shadow:
+        0 10px 25px rgba(96, 165, 250, 0.30);
+}
+
+
+/* ---------------- GHOST BUTTON ---------------- */
+
+body.dark .btn-ghost {
+    background: rgba(17, 24, 39, 0.65);
+    color: var(--ink);
+    border-color: var(--line);
+}
+
+body.dark .btn-ghost:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+
+/* ---------------- HERO SOCIAL BUTTONS ---------------- */
+
+body.dark .hero-socials a {
+    background: rgba(17, 24, 39, 0.70);
+    border-color: var(--line);
+    color: var(--ink);
+}
+
+body.dark .hero-socials a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+}
+
+
+/* ---------------- HERO CODE CARD ---------------- */
+
+body.dark .hero-card {
+    background: #111827;
+    border-color: #263244;
+}
+
+body.dark .hero-card pre {
+    color: #cbd5e1;
+}
+
+body.dark .hero-card .key {
+    color: #60a5fa;
+}
+
+body.dark .hero-card .str {
+    color: #34d399;
+}
+
+
+/* ---------------- STATISTICS CARDS ---------------- */
+/* Projects built
+   Certifications
+   Eager to learn
+*/
+
+body.dark .stat-card {
+    background: #1e293b;
+    color: #f8fafc;
+
+    border: 1px solid #334155;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+body.dark .stat-card .num {
+    color: #f8fafc;
+}
+
+body.dark .stat-card .num span {
+    color: #60a5fa;
+}
+
+body.dark .stat-card .label {
+    color: #94a3b8;
+}
+
+
+/* ---------------- SKILL CHIPS ---------------- */
+
+body.dark .chip {
+    background: rgba(96, 165, 250, 0.12);
+    color: #93c5fd;
+    border: 1px solid rgba(96, 165, 250, 0.15);
+}
+
+
+/* ---------------- PROJECT CARDS ---------------- */
+
+body.dark .project-card {
+    background: #111827;
+    border-color: #263244;
+}
+
+body.dark .project-card:hover {
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+body.dark .project-thumb {
+    background: rgba(96, 165, 250, 0.10);
+    color: #93c5fd;
+    border-bottom-color: #263244;
+}
+
+body.dark .project-body h3 {
+    color: #f8fafc;
+}
+
+body.dark .project-body p {
+    color: #94a3b8;
+}
+
+body.dark .tag {
+    background: #0f172a;
+    border-color: #334155;
+    color: #94a3b8;
+}
+
+body.dark .project-links a {
+    color: #60a5fa;
+}
+
+
+/* ---------------- CONTACT FORM ---------------- */
+
+body.dark form.contact-form input,
+body.dark form.contact-form textarea {
+    background: #111827;
+    color: #f8fafc;
+    border-color: #334155;
+}
+
+body.dark form.contact-form input::placeholder,
+body.dark form.contact-form textarea::placeholder {
+    color: #64748b;
+}
+
+body.dark form.contact-form input:focus,
+body.dark form.contact-form textarea:focus {
+    outline-color: #60a5fa;
+}
+
+
+/* ---------------- CONTACT ICONS ---------------- */
+
+body.dark .contact-info-icon {
+    background: rgba(96, 165, 250, 0.12);
+    color: #93c5fd;
+}
+
+
+/* ---------------- TIMELINE ---------------- */
+
+body.dark .timeline {
+    border-left-color: #334155;
+}
+
+body.dark .timeline-item h4 {
+    color: #f8fafc;
+}
+
+body.dark .timeline-item p {
+    color: #94a3b8;
+}
+
+
+/* ---------------- ABOUT ---------------- */
+
+body.dark .avatar {
+    background: rgba(96, 165, 250, 0.10);
+    border-color: #334155;
+}
+
+
+/* ---------------- FOOTER ---------------- */
+
+body.dark footer {
+    border-top-color: #263244;
+    color: #64748b;
+}
 
   </style>
 </head>
