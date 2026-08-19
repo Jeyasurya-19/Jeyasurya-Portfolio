@@ -17,7 +17,17 @@
     rel="stylesheet">
 
   <style>
-  --accent-soft: #E8F0FE;
+       /* ============================================================
+     DESIGN TOKENS — change these to re-theme the whole site
+     ============================================================ */
+    :root {
+      --bg: #F6F7FA;
+      --surface: #FFFFFF;
+      --ink: #14181F;
+      --muted: #6B7280;
+      --line: #E4E7EC;
+      --accent: #2F6FED;
+      --accent-soft: #E8F0FE;
       --accent-ink: #17398C;
       --radius: 14px;
       --maxw: 1120px;
@@ -25,19 +35,7 @@
       --font-body: 'Inter', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
-    /* DARK MODE */
 
-    body.dark {
-      --bg: #0b1120;
-      --surface: #111827;
-      --ink: #f8fafc;
-      --muted: #94a3b8;
-      --line: #263244;
-    
-      --accent: #60a5fa;
-      --accent-soft: rgba(96, 165, 250, 0.12);
-      --accent-ink: #93c5fd;
-}
     * {
       box-sizing: border-box;
     }
@@ -48,18 +46,11 @@
 
     body {
       margin: 0;
-    
       background: var(--bg);
       color: var(--ink);
-    
       font-family: var(--font-body);
       line-height: 1.6;
-    
       -webkit-font-smoothing: antialiased;
-    
-      transition:
-        background-color 0.35s ease,
-        color 0.35s ease;
     }
 
     h1,
@@ -308,7 +299,7 @@
 
     #role-typed {
       color: var(--accent);
-      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-family: (Georgia, 'Times New Roman', Times, serif);
     }
 
     #role-typed::after {
@@ -741,391 +732,6 @@
       outline: 2px solid var(--accent);
       outline-offset: 2px;
     }
-    /* =========================================================
-   MODERN FLOATING THEME BUTTON
-   ========================================================= */
-
-.theme-toggle {
-
-  position: fixed;
-
-  top: 78px;
-  right: 24px;
-
-  width: 48px;
-  height: 48px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid rgba(255, 255, 255, 0.35);
-
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.45);
-
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
-  color: var(--ink);
-
-  font-size: 20px;
-
-  cursor: pointer;
-
-  z-index: 1000;
-
-  box-shadow:
-    0 8px 30px rgba(15, 23, 42, 0.12);
-
-  transition:
-    transform 0.3s ease,
-    background 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-
-/* Dark glass */
-
-body.dark .theme-toggle {
-
-  background: rgba(15, 23, 42, 0.55);
-
-  border-color: rgba(148, 163, 184, 0.25);
-
-  color: #f8fafc;
-
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.35);
-}
-
-
-/* Hover */
-
-.theme-toggle:hover {
-
-  transform:
-    translateY(-3px)
-    rotate(8deg)
-    scale(1.08);
-
-  box-shadow:
-    0 12px 35px rgba(37, 99, 235, 0.20);
-}
-
-
-/* Click */
-
-.theme-toggle:active {
-
-  transform: scale(0.90);
-
-}
-
-
-/* Mobile */
-
-@media (max-width: 860px) {
-
-  .theme-toggle {
-
-    top: 72px;
-    right: 18px;
-
-    width: 44px;
-    height: 44px;
-
-    font-size: 18px;
-  }
-    /* =========================================================
-   DARK MODE VISIBILITY FIX
-   ========================================================= */
-
-
-/* ---------------- NAVIGATION ---------------- */
-
-body.dark header.tabbar {
-    background: rgba(11, 17, 32, 0.78);
-    border-bottom-color: var(--line);
-
-}
-
-/* =========================================================
-   FINAL DARK MODE
-   Global rules - intentionally outside all media queries
-   ========================================================= */
-
-body.dark {
-  --bg: #0b1120;
-  --surface: #111827;
-  --ink: #f8fafc;
-  --muted: #94a3b8;
-  --line: #263244;
-  --accent: #60a5fa;
-  --accent-soft: rgba(96, 165, 250, 0.12);
-  --accent-ink: #93c5fd;
-
-  background: var(--bg);
-  color: var(--ink);
-}
-
-
-/* Navbar */
-body.dark header.tabbar {
-  background: rgba(11, 17, 32, 0.82) !important;
-  border-bottom-color: #263244 !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.20);
-}
-
-body.dark .brand {
-  color: #f8fafc !important;
-}
-
-body.dark nav.tabs a {
-  color: #94a3b8 !important;
-  background: transparent !important;
-}
-
-body.dark nav.tabs a:hover {
-  color: #60a5fa !important;
-  background: rgba(96, 165, 250, 0.08) !important;
-}
-
-body.dark nav.tabs a.active {
-  color: #f8fafc !important;
-  background: #1e293b !important;
-  border-color: #334155 !important;
-}
-
-body.dark .menu-toggle span {
-  background: #f8fafc !important;
-}
-
-
-/* Primary buttons: Hire Me, View Projects, Send Message, etc. */
-body.dark .btn-primary {
-  background: #60a5fa !important;
-  color: #07111f !important;
-  border-color: #60a5fa !important;
-}
-
-body.dark .btn-primary:hover {
-  background: #93c5fd !important;
-  color: #07111f !important;
-  box-shadow: 0 10px 25px rgba(96, 165, 250, 0.30);
-}
-
-
-/* Ghost / secondary buttons */
-body.dark .btn-ghost {
-  background: #111827 !important;
-  color: #f8fafc !important;
-  border-color: #334155 !important;
-}
-
-body.dark .btn-ghost:hover {
-  background: #1e293b !important;
-  color: #60a5fa !important;
-  border-color: #60a5fa !important;
-}
-
-
-/* Theme button */
-body.dark .theme-toggle {
-  background: rgba(15, 23, 42, 0.60) !important;
-  color: #f8fafc !important;
-  border-color: rgba(148, 163, 184, 0.28) !important;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-}
-
-
-/* Hero social buttons */
-body.dark .hero-socials a {
-  background: #111827 !important;
-  color: #f8fafc !important;
-  border-color: #334155 !important;
-}
-
-body.dark .hero-socials a:hover {
-  background: var(--accent-soft) !important;
-  color: #60a5fa !important;
-  border-color: #60a5fa !important;
-}
-
-
-/* Hero code card */
-body.dark .hero-card {
-  background: #111827 !important;
-  border-color: #334155 !important;
-  box-shadow: 0 20px 50px -25px rgba(0, 0, 0, 0.55);
-}
-
-body.dark .hero-card pre {
-  color: #cbd5e1 !important;
-}
-
-body.dark .hero-card .key {
-  color: #60a5fa !important;
-}
-
-body.dark .hero-card .str {
-  color: #34d399 !important;
-}
-
-
-/* About */
-body.dark .avatar {
-  background: rgba(96, 165, 250, 0.10) !important;
-  border-color: #334155 !important;
-}
-
-
-/* Skills */
-body.dark .skill-card {
-  background: #111827 !important;
-  border-color: #334155 !important;
-}
-
-body.dark .skill-card h3 {
-  color: #94a3b8 !important;
-}
-
-body.dark .chip {
-  background: rgba(96, 165, 250, 0.12) !important;
-  color: #93c5fd !important;
-  border: 1px solid rgba(96, 165, 250, 0.18);
-}
-
-
-/* Statistics */
-body.dark .stat-card {
-  background: #1e293b !important;
-  color: #f8fafc !important;
-  border: 1px solid #334155 !important;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.30);
-}
-
-body.dark .stat-card .num {
-  color: #f8fafc !important;
-}
-
-body.dark .stat-card .num span {
-  color: #60a5fa !important;
-}
-
-body.dark .stat-card .label {
-  color: #94a3b8 !important;
-}
-
-
-/* Timeline */
-body.dark .timeline {
-  border-left-color: #334155 !important;
-}
-
-body.dark .timeline-item h4 {
-  color: #f8fafc !important;
-}
-
-body.dark .timeline-item p {
-  color: #94a3b8 !important;
-}
-
-
-/* Projects */
-body.dark .project-card {
-  background: #111827 !important;
-  color: #f8fafc !important;
-  border-color: #334155 !important;
-}
-
-body.dark .project-card:hover {
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
-}
-
-body.dark .project-thumb {
-  background: rgba(96, 165, 250, 0.10) !important;
-  color: #93c5fd !important;
-  border-bottom-color: #334155 !important;
-}
-
-body.dark .project-body h3 {
-  color: #f8fafc !important;
-}
-
-body.dark .project-body p {
-  color: #94a3b8 !important;
-}
-
-body.dark .tag {
-  background: #1e293b !important;
-  color: #94a3b8 !important;
-  border-color: #334155 !important;
-}
-
-body.dark .project-links a {
-  color: #60a5fa !important;
-}
-
-
-/* Contact */
-body.dark .contact-info-icon {
-  background: rgba(96, 165, 250, 0.12) !important;
-  color: #93c5fd !important;
-}
-
-body.dark form.contact-form input,
-body.dark form.contact-form textarea {
-  background: #111827 !important;
-  color: #f8fafc !important;
-  border-color: #334155 !important;
-}
-
-body.dark form.contact-form input::placeholder,
-body.dark form.contact-form textarea::placeholder {
-  color: #64748b !important;
-}
-
-body.dark form.contact-form input:focus,
-body.dark form.contact-form textarea:focus {
-  outline-color: #60a5fa !important;
-}
-
-
-/* Footer */
-body.dark footer {
-  background: #0b1120 !important;
-  color: #94a3b8 !important;
-  border-top-color: #263244 !important;
-}
-
-
-/* Smooth theme transition for major surfaces */
-header.tabbar,
-.hero-card,
-.skill-card,
-.stat-card,
-.project-card,
-.project-thumb,
-.avatar,
-.contact-info-icon,
-form.contact-form input,
-form.contact-form textarea,
-footer,
-.btn,
-.hero-socials a,
-nav.tabs a,
-.theme-toggle {
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.2s ease;
-}
   </style>
 </head>
 
