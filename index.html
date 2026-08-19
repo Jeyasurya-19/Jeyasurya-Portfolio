@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name — Developer Portfolio</title>
+  <title>Jeyasurya — Developer Portfolio</title>
   <meta name="description" content="Portfolio of Your Name, a fresher web developer.">
 
   <!-- ============================================================
@@ -35,7 +35,19 @@
       --font-body: 'Inter', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
+    /* DARK MODE */
 
+    body.dark {
+      --bg: #0b1120;
+      --surface: #111827;
+      --ink: #f8fafc;
+      --muted: #94a3b8;
+      --line: #263244;
+    
+      --accent: #60a5fa;
+      --accent-soft: rgba(96, 165, 250, 0.12);
+      --accent-ink: #93c5fd;
+}
     * {
       box-sizing: border-box;
     }
@@ -46,11 +58,18 @@
 
     body {
       margin: 0;
+    
       background: var(--bg);
       color: var(--ink);
+    
       font-family: var(--font-body);
       line-height: 1.6;
+    
       -webkit-font-smoothing: antialiased;
+    
+      transition:
+        background-color 0.35s ease,
+        color 0.35s ease;
     }
 
     h1,
@@ -732,6 +751,107 @@
       outline: 2px solid var(--accent);
       outline-offset: 2px;
     }
+    /* =========================================================
+   MODERN FLOATING THEME BUTTON
+   ========================================================= */
+
+.theme-toggle {
+
+  position: fixed;
+
+  top: 78px;
+  right: 24px;
+
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.45);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  color: var(--ink);
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  z-index: 1000;
+
+  box-shadow:
+    0 8px 30px rgba(15, 23, 42, 0.12);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* Dark glass */
+
+body.dark .theme-toggle {
+
+  background: rgba(15, 23, 42, 0.55);
+
+  border-color: rgba(148, 163, 184, 0.25);
+
+  color: #f8fafc;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+/* Hover */
+
+.theme-toggle:hover {
+
+  transform:
+    translateY(-3px)
+    rotate(8deg)
+    scale(1.08);
+
+  box-shadow:
+    0 12px 35px rgba(37, 99, 235, 0.20);
+}
+
+
+/* Click */
+
+.theme-toggle:active {
+
+  transform: scale(0.90);
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 860px) {
+
+  .theme-toggle {
+
+    top: 72px;
+    right: 18px;
+
+    width: 44px;
+    height: 44px;
+
+    font-size: 18px;
+  }
+
+
   </style>
 </head>
 
@@ -750,10 +870,32 @@
         <a href="#contact">Contact</a>
       </nav>
       <div class="nav-cta">
-        <a href="#contact" class="btn btn-primary" style="padding:8px 16px;font-size:.85rem;">Hire me</a>
-        <button class="menu-toggle" id="menuToggle"
-          aria-label="Toggle menu"><span></span><span></span><span></span></button>
-      </div>
+
+  <a href="#contact"
+     class="btn btn-primary"
+     style="padding:8px 16px;font-size:.85rem;">
+     Hire me
+  </a>
+
+  <button
+    id="themeToggle"
+    class="theme-toggle"
+    type="button"
+    aria-label="Switch to dark mode"
+    title="Switch theme">
+    🌙
+  </button>
+
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+</div>
     </div>
   </header>
 
@@ -1038,6 +1180,79 @@
       setTimeout(typeLoop, deleting ? 40 : 70);
     }
     typeLoop();
+    // ================================================================
+    // LIGHT / DARK THEME
+    // ================================================================
+    
+    const themeToggle = document.getElementById("themeToggle");
+    
+    
+    // Load saved theme
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    
+    if (savedTheme === "dark") {
+    
+      document.body.classList.add("dark");
+    
+      themeToggle.textContent = "☀️";
+    
+      themeToggle.setAttribute(
+        "aria-label",
+        "Switch to light mode"
+      );
+    
+    } else {
+    
+      themeToggle.textContent = "🌙";
+    
+      themeToggle.setAttribute(
+        "aria-label",
+        "Switch to dark mode"
+      );
+    
+    }
+    
+    
+    // Toggle theme
+    themeToggle.addEventListener("click", () => {
+    
+      document.body.classList.toggle("dark");
+    
+      const isDark =
+        document.body.classList.contains("dark");
+    
+    
+      if (isDark) {
+    
+        themeToggle.textContent = "☀️";
+    
+        themeToggle.setAttribute(
+          "aria-label",
+          "Switch to light mode"
+        );
+    
+        localStorage.setItem(
+          "portfolio-theme",
+          "dark"
+        );
+    
+      } else {
+    
+        themeToggle.textContent = "🌙";
+    
+        themeToggle.setAttribute(
+          "aria-label",
+          "Switch to dark mode"
+        );
+    
+        localStorage.setItem(
+          "portfolio-theme",
+          "light"
+        );
+    
+      }
+    
+    });
 
     // Mobile menu toggle
     const tabs = document.getElementById('tabs');
